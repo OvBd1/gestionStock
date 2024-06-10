@@ -37,8 +37,8 @@ function getArticle($id = null, $searchDATA = array(), $limit = null, $offset = 
 
         return $req->fetchAll();
     } else {
-        $sql = "SELECT a.id AS id, id_categorie, nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, 
-        date_expiration, images
+        $sql = "SELECT a.id AS id, id_categorie, nom, libelle_categorie, quantite, prix_unitaire, date_fabrication, 
+        date_expiration
         FROM article AS a, categorie_article AS c WHERE c.id=a.id_categorie $pagination";
 
         $req = $GLOBALS['connexion']->prepare($sql);
