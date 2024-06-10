@@ -65,9 +65,9 @@ $offset = ($page - 1) * $limit;
             </form>
 
         </div>
-        <div style="display: block;" class="box">
+        <div class="box table-responsive">
             <form action="" method="get">
-                <table class="mtable table-responsive">
+                <table class="mtable">
                     <tr>
                         <th>Nom article</th>
                         <th>Catégorie</th>
@@ -114,7 +114,7 @@ $offset = ($page - 1) * $limit;
                 <button type="submit">Valider</button>
             </form>
             <br>
-            <table class="mtable table-responsive">
+            <table class="mtable">
                 <tr>
                     <th>Nom article</th>
                     <th>Catégorie</th>

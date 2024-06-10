@@ -38,7 +38,7 @@ if (!empty($_GET['id'])) {
 
         </div>
         <div class="box table-responsive">
-            <table class="mtable ">
+            <table class="mtable">
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>

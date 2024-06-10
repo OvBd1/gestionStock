@@ -36,7 +36,7 @@ if (!empty($_GET['id'])) {
         
         <br>
         
-        <table class="mtable table-responsive">
+        <table class="mtable">
             <tr>
                 <th>Designation</th>
                 <th>Quantité</th>
