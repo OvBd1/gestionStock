@@ -46,6 +46,7 @@ if (!empty($_GET['id'])) {
           <th>Adresse</th>
           <th>Action</th>
         </tr>
+        
         <?php
         $clients = getClient();
 

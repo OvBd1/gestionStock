@@ -29,6 +29,12 @@ include_once '../model/function.php';
         </a>
       </li>
       <li>
+        <a href="../vue/vente.php">
+        <i class='bx bx-shopping-bag'></i>          
+        <span class="links_name">Vente</span>
+        </a>
+      </li>
+      <li>
         <a href="../vue/client.php">
           <i class="bx bx-user"></i>
           <span class="links_name">Client</span>
@@ -41,9 +47,9 @@ include_once '../model/function.php';
         </a>
       </li>
       <li>
-        <a href="#">
-          <i class="bx bx-pie-chart-alt-2"></i>
-          <span class="links_name">Analyses</span>
+        <a href="">
+          <i class="bx bx-list-ul"></i>
+          <span class="links_name">Commandes</span>
         </a>
       </li>
       <li>

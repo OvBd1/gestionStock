@@ -12,13 +12,14 @@ if (!empty($_GET['id'])) {
       <form action="<?= !empty($_GET['id']) ? "../model/modifArticle.php" : "../model/ajoutArticle.php" ?>" method="post">
         <label for="nom_article">Nom de l'article</label>
         <input value="<?= !empty($_GET['id']) ? $article['nom_article'] : "" ?>" type="text" name="nom_article" id="nom_article" placeholder="Nom de l'article">
+
         <input value="<?= !empty($_GET['id']) ? $article['id'] : "" ?>" type="hidden" name="id" id="id">
 
         <label for="categorie">Catégorie</label>
         <select name="categorie" id="categorie">
-          <option <?= !empty($_GET['id']) && $article['categorie']=='Ordinateur' ? 'selected' : '' ?> value="Ordinateur">Ordinateur</option>
-          <option <?= !empty($_GET['id']) && $article['categorie']=='Imprimante' ? 'selected' : '' ?> value="Imprimante">Imprimante</option>
-          <option <?= !empty($_GET['id']) && $article['categorie']=='Accessoire' ? 'selected' : '' ?> value="Accessoire">Accessoire</option>
+          <option <?= !empty($_GET['id']) && $article["categorie"] == "Ordinateur" ? "selected" : "" ?> value="Ordinateur">Ordinateur</option>
+          <option <?= !empty($_GET['id']) && $article["categorie"] == "Imprimante" ? "selected" : "" ?> value="Imprimante">Imprimante</option>
+          <option <?= !empty($_GET['id']) && $article["categorie"] == "Accessoire" ? "selected" : "" ?> value="Accessoire">Accessoire</option>
         </select>
 
         <label for="quantite">Quantité</label>
@@ -43,6 +44,8 @@ if (!empty($_GET['id'])) {
           </div>
         <?php
         }
+        $_SESSION['message']['text'] = "";
+        $_SESSION['message']['type'] = "";
         ?>
 
       </form>
@@ -68,7 +71,7 @@ if (!empty($_GET['id'])) {
               <td><?= $article['nom_article'] ?></td>
               <td><?= $article['categorie'] ?></td>
               <td><?= $article['quantite'] ?></td>
-              <td><?= $article['prix_unitaire'] ?></td>
+              <td><?= $article['prix_unitaire'] ?> €</td>
               <td><?= date('d/m/Y', strtotime($article['date_fabrication'])) ?></td>
               <td><?= date('d/m/Y', strtotime($article['date_expiration'])) ?></td>
               <td><a href="?id=<?= $article['id']?>"><i class='bx bx-edit-alt'></i></a></td>
@@ -84,7 +87,5 @@ if (!empty($_GET['id'])) {
 </div>
 
 <?php 
-echo $_SESSION['message']['text'];
-
 include '../partials/footer.php';
 ?>

@@ -35,5 +35,4 @@ if (
   return $_POST;  
 }
 
-
 header('Location: ../vue/article.php');
