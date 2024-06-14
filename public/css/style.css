@@ -436,17 +436,14 @@ nav .profile-details i {
 @media (max-width: 1150px) {
   .home-content .sales-boxes {
     flex-direction: column;
+    margin: 0 20px;
   }
 
   .home-content .sales-boxes .box {
     width: 100%;
-    overflow-x: scroll;
     margin-bottom: 30px;
   }
 
-  .home-content .sales-boxes .top-sales {
-    margin: 0;
-  }
 }
 
 @media (max-width: 1000px) {
