@@ -8,7 +8,7 @@ include_once '../model/function.php';
 
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Dashboard</title>
+  <title>CSF Gestion - <?=ucfirst(str_replace('.php', '', basename($_SERVER['PHP_SELF'])))?></title>
   <link rel="stylesheet" href="../public/css/style.css" />
   <!-- Boxicons CDN Link -->
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
@@ -23,37 +23,37 @@ include_once '../model/function.php';
     </div>
     <ul class="nav-links">
       <li>
-        <a href="../vue/dashboard.php" class="active">
+        <a href="../vue/dashboard.php" class="<?= basename($_SERVER['PHP_SELF'])=="dashboard.php" ? "active" : "" ?>">
           <i class="bx bx-grid-alt"></i>
           <span class="links_name">Dashboard</span>
         </a>
       </li>
       <li>
-        <a href="../vue/vente.php">
+        <a href="../vue/vente.php" class="<?= basename($_SERVER['PHP_SELF'])=="vente.php" ? "active" : "" ?>">
         <i class='bx bx-shopping-bag'></i>          
         <span class="links_name">Vente</span>
         </a>
       </li>
       <li>
-        <a href="../vue/client.php">
+        <a href="../vue/client.php" class="<?= basename($_SERVER['PHP_SELF'])=="client.php" ? "active" : "" ?>">
           <i class="bx bx-user"></i>
           <span class="links_name">Client</span>
         </a>
       </li>
       <li>
-        <a href="../vue/fournisseur.php">
+        <a href="../vue/fournisseur.php" class="<?= basename($_SERVER['PHP_SELF'])=="fournisseur.php" ? "active" : "" ?>">
           <i class="bx bx-user"></i>
           <span class="links_name">Fournisseur</span>
         </a>
       </li>
       <li>
-        <a href="../vue/article.php">
+        <a href="../vue/article.php" class="<?= basename($_SERVER['PHP_SELF'])=="article.php" ? "active" : "" ?>">
           <i class="bx bx-box"></i>
           <span class="links_name">Article</span>
         </a>
       </li>
       <li>
-        <a href="../vue/commande.php">
+        <a href="../vue/commande.php" class="<?= basename($_SERVER['PHP_SELF'])=="commande.php" ? "active" : "" ?>">
           <i class="bx bx-list-ul"></i>
           <span class="links_name">Commandes</span>
         </a>
@@ -106,7 +106,7 @@ include_once '../model/function.php';
     <nav class="hidden-print">
       <div class="sidebar-button">
         <i class="bx bx-menu sidebarBtn"></i>
-        <span class="dashboard">Dashboard</span>
+        <span class="dashboard"><?= ucfirst(str_replace('.php', '', basename($_SERVER['PHP_SELF']))) ?></span>
       </div>
       <div class="search-box">
         <input type="text" placeholder="Recherche..." />
