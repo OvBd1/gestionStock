@@ -53,7 +53,7 @@ include_once '../model/function.php';
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="../vue/commande.php">
           <i class="bx bx-list-ul"></i>
           <span class="links_name">Commandes</span>
         </a>
