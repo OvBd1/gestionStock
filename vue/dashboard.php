@@ -40,52 +40,43 @@
   <div class="sales-boxes">
     <div class="recent-sales box">
       <div class="title">Vente recentes</div>
+      <?php $ventes = getLastVente() ?>
       <div class="sales-details">
         <ul class="details">
           <li class="topic">Date</li>
-          <li><a href="#">02 Jan 2021</a></li>
-          <li><a href="#">02 Jan 2021</a></li>
-          <li><a href="#">02 Jan 2021</a></li>
-          <li><a href="#">02 Jan 2021</a></li>
-          <li><a href="#">02 Jan 2021</a></li>
-          <li><a href="#">02 Jan 2021</a></li>
-          <li><a href="#">02 Jan 2021</a></li>
+          <?php foreach ($ventes as $vente) {
+            ?>
+            <li><a href="#"><?= date('d/M/Y', strtotime($vente['date_vente'])) ?></a></li>
+            <?php
+          }
+          ?>
         </ul>
         <ul class="details">
           <li class="topic">Client</li>
-          <li><a href="#">Abdoul Razak</a></li>
-          <li><a href="#">Abdel Nasser</a></li>
-          <li><a href="#">Maman Sani</a></li>
-          <li><a href="#">Narouwa</a></li>
-          <li><a href="#">Ishaka</a></li>
-          <li><a href="#">Abdoullah</a></li>
-          <li><a href="#">Adam</a></li>
-          <li><a href="#">Komche</a></li>
-          <li><a href="#">Adamou</a></li>
+          <?php foreach ($ventes as $vente) {
+            ?>
+            <li><a href="#"><?= $vente['nom'].' '.$vente['prenom'] ?></a></li>
+            <?php
+          }
+          ?>
         </ul>
         <ul class="details">
-          <li class="topic">Produit</li>
-          <li><a href="#">Ordinateur</a></li>
-          <li><a href="#">iPhone</a></li>
-          <li><a href="#">Returned</a></li>
-          <li><a href="#">Ordinateur</a></li>
-          <li><a href="#">iPhone</a></li>
-          <li><a href="#">Returned</a></li>
-          <li><a href="#">Ordinateur</a></li>
-          <li><a href="#">iPhone</a></li>
-          <li><a href="#">Ordinateur</a></li>
+          <li class="topic">Article</li>
+          <?php foreach ($ventes as $vente) {
+            ?>
+            <li><a href="#"><?= $vente['nom_article'] ?></a></li>
+            <?php
+          }
+          ?>
         </ul>
         <ul class="details">
           <li class="topic">Prix</li>
-          <li><a href="#">204.98 F</a></li>
-          <li><a href="#">24.55 F</a></li>
-          <li><a href="#">25.88 F</a></li>
-          <li><a href="#">170.66 F</a></li>
-          <li><a href="#">56.56 F</a></li>
-          <li><a href="#">44.95 F</a></li>
-          <li><a href="#">67.33 F</a></li>
-          <li><a href="#">23.53 F</a></li>
-          <li><a href="#">46.52 F</a></li>
+          <?php foreach ($ventes as $vente) {
+            ?>
+            <li><a href="#"><?= number_format($vente['prix'], 0, ",", " ") ?></a></li>
+            <?php
+          }
+          ?>
         </ul>
       </div>
       <div class="button">

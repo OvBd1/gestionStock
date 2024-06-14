@@ -98,3 +98,13 @@ function getAllArticle() {
   $req->execute();
   return $req->fetch();
 }
+
+function getLastVente() {
+   $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, a.id AS idArticle
+           FROM client AS c, vente AS v, article AS a WHERE v.id_article = a.id AND v.id_client = c.id AND v.id = ? AND etat = ?
+           ORDER BY date_vente DESC LIMIT 10";
+
+   $req = $GLOBALS['connexion']->prepare($sql);
+   $req->execute([1]);
+   return $req->fetchAll(); 
+}
