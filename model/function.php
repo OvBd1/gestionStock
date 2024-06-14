@@ -77,3 +77,24 @@ function getCommande($id = null) {
    $req->execute();
    return $req->fetchAll(); }
 }
+
+function getAllCommande() {
+  $sql = "SELECT COUNT(*) AS nb FROM commande";
+  $req = $GLOBALS['connexion']->prepare($sql);
+  $req->execute();
+  return $req->fetch();
+}
+
+function getAllVente() {
+  $sql = "SELECT COUNT(*) AS nb FROM vente WHERE etat = ?";
+  $req = $GLOBALS['connexion']->prepare($sql);
+  $req->execute([1]);
+  return $req->fetch();
+}
+
+function getAllArticle() {
+  $sql = "SELECT COUNT(*) AS nb FROM article";
+  $req = $GLOBALS['connexion']->prepare($sql);
+  $req->execute();
+  return $req->fetch();
+}

@@ -5,7 +5,7 @@
     <div class="box">
       <div class="right-side">
         <div class="box-topic">Commande</div>
-        <div class="number">40,876</div>
+        <div class="number"><?= getAllCommande()['nb'] ?></div>
         <div class="indicator">
           <i class="bx bx-up-arrow-alt"></i>
           <span class="text">Depuis hier</span>
@@ -16,7 +16,7 @@
     <div class="box">
       <div class="right-side">
         <div class="box-topic">Vente</div>
-        <div class="number">38,876</div>
+        <div class="number"><?= getAllVente()['nb'] ?></div>
         <div class="indicator">
           <i class="bx bx-up-arrow-alt"></i>
           <span class="text">Depuis hier</span>
@@ -26,25 +26,14 @@
     </div>
     <div class="box">
       <div class="right-side">
-        <div class="box-topic">Profit</div>
-        <div class="number">12,876 F</div>
+        <div class="box-topic">Article</div>
+        <div class="number"><?= getAllArticle()['nb'] ?></div>
         <div class="indicator">
           <i class="bx bx-up-arrow-alt"></i>
           <span class="text">Depuis hier</span>
         </div>
       </div>
       <i class="bx bx-cart cart three"></i>
-    </div>
-    <div class="box">
-      <div class="right-side">
-        <div class="box-topic">Revenu</div>
-        <div class="number">11,086</div>
-        <div class="indicator">
-          <i class="bx bx-down-arrow-alt down"></i>
-          <span class="text">Aujourd'hui</span>
-        </div>
-      </div>
-      <i class="bx bxs-cart-download cart four"></i>
     </div>
   </div>
 

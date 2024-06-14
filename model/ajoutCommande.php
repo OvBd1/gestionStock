@@ -1,6 +1,6 @@
 <?php
 include 'connexion.php';
-include_once 'functions.php';
+include_once 'function.php';
 
 if (
   !empty($_POST['id_article'])
