@@ -59,6 +59,12 @@ include '../model/function.php';
         </a>
       </li>
       <li>
+        <a href="../vue/categorie.php" class="<?= basename($_SERVER['PHP_SELF'])=="categorie.php" ? "active" : "" ?>">
+          <i class="bx bx-category"></i>
+          <span class="links_name">Catégorie</span>
+        </a>
+      </li>
+      <li>
         <a href="#">
           <i class="bx bx-coin-stack"></i>
           <span class="links_name">Stock</span>
