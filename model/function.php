@@ -29,19 +29,19 @@ function getClient($id = null) {
 
 function getVente($id = null) {
   if (!empty($id)) {
-   $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente 
-           FROM client AS c, vente AS v, article AS a WHERE v.id_article = a.id AND v.id_client = c.id AND v.id = ?";
+   $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, prix_unitaire, adresse, telephone
+           FROM client AS c, vente AS v, article AS a WHERE v.id_article = a.id AND v.id_client = c.id AND v.id = ? AND etat = ?";
 
    $req = $GLOBALS['connexion']->prepare($sql);
 
-   $req->execute([$id]);
+   $req->execute([$id, 1]);
 
    return $req->fetch();
   } else {
-    $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente 
-            FROM client AS c, vente AS v, article AS a WHERE v.id_article = a.id AND v.id_client = c.id";
+    $sql = "SELECT nom_article, nom, prenom, v.quantite, prix, date_vente, v.id, a.id AS idArticle
+            FROM client AS c, vente AS v, article AS a WHERE v.id_article = a.id AND v.id_client = c.id AND etat = ?";
 
    $req = $GLOBALS['connexion']->prepare($sql);
-   $req->execute();
+   $req->execute([1]);
    return $req->fetchAll(); }
 }

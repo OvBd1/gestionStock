@@ -2,7 +2,7 @@
 include '../partials/header.php';
 
 if (!empty($_GET['id'])) {
-  $article = getArticle($_GET['id']);
+  $article = getVente($_GET['id']);
 }
 ?>
 
@@ -20,7 +20,7 @@ if (!empty($_GET['id'])) {
           if (!empty($articles) && is_array($articles)) {
             foreach ($articles as $article) {
               ?>
-              <option data-prix="<?= $value['prix_unitaire']?>" value="<?= $article['id'] ?>"><?= $article['nom_article']. " - " . $article['quantite']. ' disponible' ?></option>
+              <option data-prix="<?= $article['prix_unitaire']?>" value="<?= $article['id'] ?>"><?= $article['nom_article']. " - " . $article['quantite']. ' disponible' ?></option>
               <?php
             }
           }
@@ -86,7 +86,10 @@ if (!empty($_GET['id'])) {
               <td><?= $vente['quantite'] ?></td>
               <td><?= $vente['prix'] ?> €</td>
               <td><?= date('d/m/Y', strtotime($vente['date_vente'])) ?></td>
-              <td><a href="?id=<?= $vente['id']?>"><i class='bx bx-edit-alt'></i></a></td>
+              <td>
+                <a href="recuVente.php?id=<?= $vente['id']?>"><i class='bx bx-receipt'></i></a>
+                <a onclick="annuleVente(<?= $vente['id']?>, <?= $vente['idArticle']?>, <?= $vente['quantite']?>)" style="color: red;"><i class='bx bx-stop-circle' ></i></a>
+              </td>
             </tr>
             <?php
           }
@@ -103,6 +106,13 @@ include '../partials/footer.php';
 ?>
 
 <script>
+
+  function annuleVente(idVente, idArticle, quantite) {
+    if (confirm("Voulez-vous vraiment annuler cette vente ?")) {
+      window.location.href = "../model/annuleVente.php?idVente=" + idVente + "&idArticle=" + idArticle + "&quantite=" + quantite
+    }
+  }
+
   function setPrix() {
     let article = document.querySelector('#id_article')
     let quantite = document.querySelector('#quantite')

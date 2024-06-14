@@ -545,6 +545,11 @@ button {
   border-radius: 5px;
 }
 
+#btnPrint {
+  width: 150px;
+  padding: 0 10px;
+}
+
 label {
   display: block;
 }
