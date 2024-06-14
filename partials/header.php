@@ -41,6 +41,12 @@ include_once '../model/function.php';
         </a>
       </li>
       <li>
+        <a href="../vue/fournisseur.php">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Fournisseur</span>
+        </a>
+      </li>
+      <li>
         <a href="../vue/article.php">
           <i class="bx bx-box"></i>
           <span class="links_name">Article</span>

@@ -45,3 +45,16 @@ function getVente($id = null) {
    $req->execute([1]);
    return $req->fetchAll(); }
 }
+
+function getFournisseur($id = null) {
+  if (!empty($id)) {
+   $sql = "SELECT * FROM fournisseur WHERE id = ?";
+   $req = $GLOBALS['connexion']->prepare($sql);
+   $req->execute([$id]);
+   return $req->fetch();
+  } else {
+   $sql = "SELECT * FROM fournisseur";
+   $req = $GLOBALS['connexion']->prepare($sql);
+   $req->execute();
+   return $req->fetchAll(); }
+}
