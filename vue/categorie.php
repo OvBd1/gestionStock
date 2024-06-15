@@ -2,7 +2,7 @@
 include '../partials/header.php';
 
 if (!empty($_GET['id'])) {
-  $categorie = getCategorie($_GET['id']);
+  $article = getCategorie($_GET['id']);
 }
 ?>
 
@@ -12,7 +12,6 @@ if (!empty($_GET['id'])) {
       <form action="<?= !empty($_GET['id']) ? "../model/modifCategorie.php" : "../model/ajoutCategorie.php" ?>" method="post">
         <label for="libelle_categorie">Libelle</label>
         <input value="<?= !empty($_GET['id']) ? $categorie['libelle_categorie'] : "" ?>" type="text" name="libelle_categorie" id="libelle_categorie" placeholder="Nom de la catégorie">
-
         <input value="<?= !empty($_GET['id']) ? $categorie['id'] : "" ?>" type="hidden" name="id" id="id">
 
         <button type="submit">Valider</button>
@@ -38,7 +37,7 @@ if (!empty($_GET['id'])) {
           <th>Action</th>
         </tr>
         <?php
-        $categories = getArticle();
+        $categories = getCategorie();
 
         if (!empty($categories) && is_array($categories)) {
           foreach ($categories as $categorie) {

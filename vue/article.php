@@ -9,17 +9,25 @@ if (!empty($_GET['id'])) {
 <div class="home-content">
   <div class="overview-boxes">
     <div class="box">
-      <form action="<?= !empty($_GET['id']) ? "../model/modifArticle.php" : "../model/ajoutArticle.php" ?>" method="post">
+      <form action="<?= !empty($_GET['id']) ? "../model/modifArticle.php" : "../model/ajoutArticle.php" ?>" method="post" enctype="multipart/form-data">
         <label for="nom_article">Nom de l'article</label>
         <input value="<?= !empty($_GET['id']) ? $article['nom_article'] : "" ?>" type="text" name="nom_article" id="nom_article" placeholder="Nom de l'article">
 
         <input value="<?= !empty($_GET['id']) ? $article['id'] : "" ?>" type="hidden" name="id" id="id">
 
-        <label for="categorie">Catégorie</label>
-        <select name="categorie" id="categorie">
-          <option <?= !empty($_GET['id']) && $article["categorie"] == "Ordinateur" ? "selected" : "" ?> value="Ordinateur">Ordinateur</option>
-          <option <?= !empty($_GET['id']) && $article["categorie"] == "Imprimante" ? "selected" : "" ?> value="Imprimante">Imprimante</option>
-          <option <?= !empty($_GET['id']) && $article["categorie"] == "Accessoire" ? "selected" : "" ?> value="Accessoire">Accessoire</option>
+        <label for="id_categorie">Catégorie</label>
+        <select name="id_categorie" id="id_categorie">
+          <?php 
+            $categories = getCategorie();
+
+            if (!empty($categories) && is_array($categories)) {
+              foreach ($categories as $categorie) {
+                ?>
+                <option <?= !empty($_GET['id']) && $article['id_categorie'] == $categorie['id'] ? "selected" : "" ?> value="<?= $categorie['id'] ?>"><?= $categorie['libelle_categorie'] ?></option>
+                <?php
+              }
+            }
+          ?>
         </select>
 
         <label for="quantite">Quantité</label>
@@ -33,6 +41,9 @@ if (!empty($_GET['id'])) {
 
         <label for="date_expiration">Date d'expiration</label>
         <input value="<?= !empty($_GET['id']) ? $article['date_expiration'] : "" ?>" type="datetime-local" name="date_expiration" id="date_expiration">
+
+        <label for="images">Image</label>
+        <input value="<?= !empty($_GET['id']) ? $article['images'] : "" ?>" type="file" name="images" id="images">
 
         <button type="submit">Valider</button>
 
@@ -59,6 +70,7 @@ if (!empty($_GET['id'])) {
           <th>Prix unitaire</th>
           <th>Date de fabrication</th>
           <th>Date d'expiration</th>
+          <th>Image</th>
           <th>Action</th>
         </tr>
         <?php
@@ -69,11 +81,12 @@ if (!empty($_GET['id'])) {
             ?>
             <tr>
               <td><?= $article['nom_article'] ?></td>
-              <td><?= $article['categorie'] ?></td>
+              <td><?= $article['libelle_categorie'] ?></td>
               <td><?= $article['quantite'] ?></td>
               <td><?= $article['prix_unitaire'] ?> €</td>
               <td><?= date('d/m/Y', strtotime($article['date_fabrication'])) ?></td>
               <td><?= date('d/m/Y', strtotime($article['date_expiration'])) ?></td>
+              <td><img width="100" height="100" src="<?= $article['images'] ?>" alt="<?= $article['nom_article'] ?>"></td>
               <td><a href="?id=<?= $article['id']?>"><i class='bx bx-edit-alt'></i></a></td>
             </tr>
             <?php
