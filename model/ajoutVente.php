@@ -10,8 +10,8 @@ if (
 ) {
   $id_article = $_POST['id_article'];
   $id_client = $_POST['id_client'];
-  $quantite = $_POST['quantite'];
-  $prix = $_POST['prix'];
+  $quantite = abs($_POST['quantite']);
+  $prix = abs($_POST['prix']);
 
   $article = getArticle($id_article);
 

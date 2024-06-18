@@ -10,8 +10,8 @@ if (
 ) {
   $id_article = $_POST['id_article'];
   $id_fournisseur = $_POST['id_fournisseur'];
-  $quantite = $_POST['quantite'];
-  $prix = $_POST['prix'];
+  $quantite = abs($_POST['quantite']);
+  $prix = abs($_POST['prix']);
 
   $sql = "INSERT INTO commande(id_article, id_fournisseur, quantite, prix) VALUES(?, ?, ?, ?)";
   $req = $connexion->prepare($sql);

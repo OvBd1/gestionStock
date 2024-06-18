@@ -21,4 +21,3 @@ if (!empty($_POST['libelle_categorie'])) {
 }
 
 header('Location: ../vue/categorie.php');
-

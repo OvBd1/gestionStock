@@ -12,8 +12,8 @@ if (
 ) {
   $nom_article = $_POST['nom_article'];
   $id_categorie = $_POST['id_categorie'];
-  $quantite = $_POST['quantite'];
-  $prix_unitaire = $_POST['prix_unitaire'];
+  $quantite = abs($_POST['quantite']);
+  $prix_unitaire = abs($_POST['prix_unitaire']);
   $date_fabrication = $_POST['date_fabrication'];
   $date_expiration = $_POST['date_expiration'];
 
@@ -50,4 +50,3 @@ if (
 }
 
 header('Location: ../vue/article.php');
-

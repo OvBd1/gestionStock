@@ -1,7 +1,7 @@
 <?php
 include 'connexion.php';
 
-function getArticle($id = null) {
+function getArticle($id = null, $searchData = []) {
   if (!empty($id)) {
     $sql = "SELECT nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, id_categorie, a.id AS id, images
             FROM article AS a, categorie_article AS c 
@@ -10,6 +10,25 @@ function getArticle($id = null) {
     $req = $GLOBALS['connexion']->prepare($sql);
     $req->execute([$id]);
     return $req->fetch();
+
+  } elseif (!empty($searchData)) {
+    $search = "";
+    extract($searchData);
+    if (!empty($nom_article)) $search .= " AND a.nom_article LIKE '%$nom_article%'";
+    if (!empty($id_categorie)) $search .= " AND a.id_categorie = $id_categorie";
+    if (!empty($quantite)) $search .= " AND a.quantite = $quantite";
+    if (!empty($prix_unitaire)) $search .= " AND a.prix_unitaire = $prix_unitaire";
+    if (!empty($date_fabrication)) $search .= " AND DATE(a.date_fabrication) LIKE '$date_fabrication'";
+    if (!empty($date_expiration)) $search .= " AND DATE(a.date_expiration) LIKE '$date_expiration'";
+
+      $sql = "SELECT nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, id_categorie, a.id, images
+      FROM article AS a, categorie_article AS c 
+      WHERE a.id_categorie = c.id $search";
+  
+      $req = $GLOBALS['connexion']->prepare($sql);
+      $req->execute();
+      return $req->fetchAll();
+
   } else {
     $sql = "SELECT nom_article, libelle_categorie, quantite, prix_unitaire, date_fabrication, date_expiration, id_categorie, a.id, images
             FROM article AS a, categorie_article AS c 

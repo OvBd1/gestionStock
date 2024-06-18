@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../partials/header.php';
 
 if (!empty($_GET['id'])) {
@@ -17,16 +17,17 @@ if (!empty($_GET['id'])) {
 
         <label for="id_categorie">Catégorie</label>
         <select name="id_categorie" id="id_categorie">
-          <?php 
-            $categories = getCategorie();
+          <option value="">--Choisir une catégorie--</option>
+          <?php
+          $categories = getCategorie();
 
-            if (!empty($categories) && is_array($categories)) {
-              foreach ($categories as $categorie) {
-                ?>
-                <option <?= !empty($_GET['id']) && $article['id_categorie'] == $categorie['id'] ? "selected" : "" ?> value="<?= $categorie['id'] ?>"><?= $categorie['libelle_categorie'] ?></option>
-                <?php
-              }
+          if (!empty($categories) && is_array($categories)) {
+            foreach ($categories as $categorie) {
+              ?>
+              <option <?= !empty($_GET['id']) && $article['id_categorie'] == $categorie['id'] ? "selected" : "" ?> value="<?= $categorie['id'] ?>"><?= $categorie['libelle_categorie'] ?></option>
+              <?php
             }
+          }
           ?>
         </select>
 
@@ -53,7 +54,7 @@ if (!empty($_GET['id'])) {
           <div class="alert <?= $_SESSION['message']['type'] ?>">
             <?= $_SESSION['message']['text'] ?>
           </div>
-        <?php
+          <?php
         }
         $_SESSION['message']['text'] = "";
         $_SESSION['message']['type'] = "";
@@ -61,7 +62,57 @@ if (!empty($_GET['id'])) {
 
       </form>
     </div>
-    <div class="box table-responsive">
+    <div style="display: block;" class="box table-responsive">
+      <form action="" method="get">
+        <table class="mtable">
+          <tr>
+            <th>Nom de l'article</th>
+            <th>Catégorie</th>
+            <th>Quantité</th>
+            <th>Prix unitaire</th>
+            <th>Date de fabrication</th>
+            <th>Date d'expiration</th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="nom_article" id="nom_article" placeholder="Nom de l'article">
+            </td>
+            <td>
+              <select name="id_categorie" id="id_categorie">
+                <option value="">--Choisir une catégorie--</option>
+                <?php
+                $categories = getCategorie();
+
+                if (!empty($categories) && is_array($categories)) {
+                  foreach ($categories as $categorie) {
+                    ?>
+                    <option 
+                      <?= !empty($_GET['id']) && $article['id_categorie'] == $categorie['id'] ? "selected" : "" ?> value="<?= $categorie['id'] ?>"><?= $categorie['libelle_categorie'] ?>
+                    </option>
+                    <?php
+                  }
+                }
+                ?>
+              </select>
+            </td>
+            <td>
+              <input type="number" name="quantite" id="quantite" placeholder="Quantité">
+            </td>
+            <td>
+              <input type="number" name="prix_unitaire" id="prix_unitaire" placeholder="Prix unitaire">
+            </td>
+            <td>
+            <input type="date" name="date_fabrication" id="date_fabrication">
+            </td>
+            <td>
+              <input type="date" name="date_expiration" id="date_expiration">
+            </td>
+          </tr>
+        </table>
+        <br>
+        <button type="submit">Rechercher</button>
+      </form>
+      <br>
       <table class="mtable">
         <tr>
           <th>Nom de l'article</th>
@@ -74,7 +125,11 @@ if (!empty($_GET['id'])) {
           <th>Action</th>
         </tr>
         <?php
-        $articles = getArticle();
+        if (!empty($_GET)) {
+          $articles = getArticle(null, $_GET);
+        } else {
+          $articles = getArticle();
+        }
 
         if (!empty($articles) && is_array($articles)) {
           foreach ($articles as $article) {
@@ -87,7 +142,7 @@ if (!empty($_GET['id'])) {
               <td><?= date('d/m/Y', strtotime($article['date_fabrication'])) ?></td>
               <td><?= date('d/m/Y', strtotime($article['date_expiration'])) ?></td>
               <td><img width="100" height="100" src="<?= $article['images'] ?>" alt="<?= $article['nom_article'] ?>"></td>
-              <td><a href="?id=<?= $article['id']?>"><i class='bx bx-edit-alt'></i></a></td>
+              <td><a href="?id=<?= $article['id'] ?>"><i class='bx bx-edit-alt'></i></a></td>
             </tr>
             <?php
           }
@@ -99,6 +154,4 @@ if (!empty($_GET['id'])) {
 
 </div>
 
-<?php 
-include '../partials/footer.php';
-?>
+<?php include '../partials/footer.php' ?>

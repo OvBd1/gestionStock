@@ -56,6 +56,4 @@ if (!empty($_GET['id'])) {
 
 </div>
 
-<?php 
-include '../partials/footer.php';
-?>
+<?php include '../partials/footer.php' ?>

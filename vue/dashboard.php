@@ -106,4 +106,4 @@
 </div>
 </section>
 
-<?php include '../partials/footer.php'; ?>
+<?php include '../partials/footer.php' ?>
